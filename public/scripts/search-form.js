@@ -14,7 +14,7 @@ export function renderSearchFormBlock(checkInDate, checkOutDate) {
     date.setDate(date.getDate() + 2);
     const currentCheckOutDate = checkOutDate ? checkOutDate : jsonDate(date);
     renderBlock("search-form-block", `
-    <form>
+    <form id="search-form">
       <fieldset class="search-filedset">
         <div class="row">
           <div>

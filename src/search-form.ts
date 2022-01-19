@@ -18,7 +18,7 @@ export function renderSearchFormBlock (checkInDate?:string, checkOutDate?:string
     renderBlock(
         "search-form-block",
         `
-    <form>
+    <form id="search-form">
       <fieldset class="search-filedset">
         <div class="row">
           <div>
