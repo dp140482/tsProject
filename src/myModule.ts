@@ -9,7 +9,7 @@ function search(data: SearchFormData): void {
     console.log(data)
 }
 
-export function onSearch(event): void {
+export function onSearch(event: Event): void {
     event.preventDefault()
     const priceValue = (document.getElementById("max-price") as HTMLInputElement).value
     const data: SearchFormData = {
@@ -38,9 +38,12 @@ function isUserData(obj: any):obj is UserData {
 }
 
 export function getUserData():UserData | undefined {
-    const data:unknown = JSON.parse(localStorage.getItem("user"));
-    if (isUserData(data)) {
-        return data as UserData;
+    const localUserData: string | null = localStorage.getItem("user");
+    if (localUserData) {
+        const data:unknown = JSON.parse(localUserData);
+        if (isUserData(data)) {
+            return data as UserData;
+        }
     }
     return undefined;
 }
@@ -50,9 +53,12 @@ export function setFavoritesAmount(amount: number) {
 }
 
 export function getFavoritesAmount():number | undefined {
-    const data:unknown = JSON.parse(localStorage.getItem("favoritesAmount"));
-    if (typeof data === "number" ) {
-        return data as number;
+    const localFavoritesAmount: string | null = localStorage.getItem("favoritesAmount");
+    if (localFavoritesAmount) {
+        const data:unknown = JSON.parse(localFavoritesAmount);
+        if (typeof data === "number" ) {
+            return data as number;
+        }
     }
     return undefined;
 }

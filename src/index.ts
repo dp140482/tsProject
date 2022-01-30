@@ -14,13 +14,14 @@ import {
 window.addEventListener("DOMContentLoaded", () => {
     setUserData({userName: "Wade Warren", avatarUrl: "img/avatar.png"});
     setFavoritesAmount(0);
-    const data:UserData = getUserData();
-    renderUserBlock(data.userName, data.avatarUrl, getFavoritesAmount());
+    const data:UserData | undefined = getUserData();
+    if (data) renderUserBlock(data.userName, data.avatarUrl, getFavoritesAmount());
     renderSearchFormBlock()
     renderSearchStubBlock()
     renderToast(
         {text: "Это пример уведомления. Используйте его при необходимости", type: "success"},
         {name: "Понял", handler: () => {console.log("Уведомление закрыто")}}
     )
-    document.getElementById("search-form").addEventListener("submit", onSearch)
+    const searchForm: HTMLElement | null = document.getElementById("search-form")
+    if (searchForm) searchForm.addEventListener("submit", onSearch)
 })
